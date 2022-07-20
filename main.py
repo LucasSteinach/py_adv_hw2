@@ -42,7 +42,7 @@ for name_surname, data in people_dict.items():
 
 # TODO 2: сохраните получившиеся данные в другой файл
 # код для записи файла в формате CSV
-# with open("phonebook.csv", "w") as f:
-#     datawriter = csv.writer(f, delimiter=',')
-#     # Вместо contacts_list подставьте свой список
-#     datawriter.writeows(contacts_list)
+with open("phonebook.csv", "w", encoding='utf8') as f:
+    datawriter = csv.writer(f, delimiter=',')
+    # Вместо contacts_list подставьте свой список
+    datawriter.writerows(res_list)
