@@ -7,6 +7,10 @@ with open("phonebook_raw.csv", encoding='utf-8') as f:
     contacts_list = list(rows)
 print(contacts_list)
 print('\n\n\n')
+people_dict = dict()
+
+res_list = []
+
 # TODO 1: выполните пункты 1-3 ДЗ
 for contact in contacts_list:
     fullname = ' '.join(contact[:3])
@@ -23,8 +27,19 @@ for contact in contacts_list:
         else:
             contact[5] = main_phone + ' доб.' + add_phone
 
+    name_wth_sur = contact[0] + ' ' + contact[1]
+    if name_wth_sur not in people_dict:
+        people_dict[name_wth_sur] = contact[2:]
+    else:
+        for i in range(len(contact[2:])):
+            if people_dict[name_wth_sur][i] != contact[i + 2]:
+                people_dict[name_wth_sur][i] = people_dict[name_wth_sur][i] + contact[i + 2]
 
-pprint(contacts_list)
+for name_surname, data in people_dict.items():
+    res_list.append([*name_surname.split(' '), *data])
+
+# pprint(res_list)
+
 # TODO 2: сохраните получившиеся данные в другой файл
 # код для записи файла в формате CSV
 # with open("phonebook.csv", "w") as f:
